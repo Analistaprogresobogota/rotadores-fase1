@@ -1,0 +1,8 @@
+{
+  "appId": "com.fase1.rotadores",
+  "appName": "Rotadores Fase 1",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  }
+}

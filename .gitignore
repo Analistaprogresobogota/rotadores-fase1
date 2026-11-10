@@ -1,0 +1,27 @@
+node_modules/
+.env
+*.exe
+*.apk
+*.dmg
+*.zip
+.DS_Store
+dist/
+release/
+android/
+
+# Entregables de consultoria y datos fuente: se conservan en local, no en el repo
+Documentación/
+rotadores-fase1/datos-fuente/
+rotadores-fase1/scripts/seed-supabase.mjs
+rotadores-fase1/scripts/seed-usuarios.mjs
+rotadores-fase1/scripts/supabase-schema.sql
+rotadores-fase1/scripts/supabase-schema-usuarios.sql
+backup_migracion_913/
+
+# Cuentas del modo local y variables locales: nunca a Git
+*.local.js
+*.local
+
+# Python
+__pycache__/
+*.pyc
