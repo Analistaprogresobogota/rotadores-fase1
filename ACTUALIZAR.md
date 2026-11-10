@@ -72,16 +72,11 @@ Con npm 11 o superior, si la compilación de escritorio falla al empaquetar, pri
 
 Distribuir la app nueva a los dispositivos **el mismo día** que se actualiza la API.
 
-## 3. Contraseñas (recomendado)
+## 3. Contraseñas
 
-Las contraseñas anteriores estuvieron en el repositorio cuando era público. Siguen funcionando, pero conviene reemplazarlas. Por cada usuario:
+No requieren ninguna acción para la actualización: las actuales siguen funcionando y se cifran solas al primer ingreso. Si hace falta cambiar alguna, el Admin lo hace desde la app en **Usuarios → Cambiar contraseña**. La app sugiere una clave segura, la guarda cifrada y la muestra una sola vez.
 
-```bash
-cd api-rotadores
-node scripts/asignar-clave.mjs <usuario>
-```
-
-El script genera una contraseña segura, la guarda cifrada y la muestra **una sola vez** para entregarla a la persona. Desde la app, el Admin también puede crear usuarios. Solo se aceptan claves de 8 o más caracteres con letras y números.
+Como alternativa sin entrar a la app, desde el servidor: `cd api-rotadores && node scripts/asignar-clave.mjs <usuario>`.
 
 ## Volver atrás
 
