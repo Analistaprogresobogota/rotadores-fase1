@@ -11,16 +11,22 @@ Guía para Tecnología: actualizar la API (`api-rotadores`) y la app (`rotadores
 - Bloqueo de 15 minutos tras 5 intentos fallidos, validación de datos y corrección de un error con varios dispositivos guardando a la vez.
 - No hay cambios en la base de datos: mismas tablas y columnas, sin migraciones.
 
+## 0. Antes de empezar
+
+Hacer una copia de la carpeta actual de la API (con su `.env`) y de la app instalada: es el camino para volver atrás.
+
+Código de esta versión: https://github.com/Analistaprogresobogota/rotadores-fase1 (público, versión de noviembre 2026).
+
 ## 1. API (`api-rotadores`)
 
 ```bash
-cd <carpeta del repositorio>
-git pull
-cd api-rotadores
+git clone https://github.com/Analistaprogresobogota/rotadores-fase1.git
+cp <carpeta actual de la API>/.env rotadores-fase1/api-rotadores/.env    # se conserva la configuración actual
+cd rotadores-fase1/api-rotadores
 npm ci
 ```
 
-Agregar al `.env` existente (los demás valores no cambian):
+Agregar al `.env` (los demás valores no cambian):
 
 ```bash
 # Secreto para firmar las sesiones: obligatorio, sin él la API no arranca.
@@ -35,7 +41,7 @@ Sobre `CORS_ORIGIN`: la sesión viaja en una cabecera, no en cookies, así que `
 - `https://localhost`, que es el origen de la app Android;
 - `null`, que es el origen de la app de escritorio (Electron).
 
-Reiniciar el servicio de la API como lo hacen hoy.
+Reiniciar el servicio de la API, ahora apuntando a esta carpeta.
 
 ### Verificar la API
 
@@ -79,11 +85,7 @@ El script genera una contraseña segura, la guarda cifrada y la muestra **una so
 
 ## Volver atrás
 
-```bash
-git checkout 85e56dd    # versión anterior a esta actualización
-```
-
-Reinstalar la API y la app de esa versión. No hay que tocar la base de datos.
+Volver a poner en servicio la copia de la API y la app guardada en el paso 0. No hay que tocar la base de datos.
 
 Las contraseñas que ya se cifraron dejarán de funcionar con la versión anterior; esas cuentas se restablecen con un `UPDATE` de la columna `"Password"`.
 
