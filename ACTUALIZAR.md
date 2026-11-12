@@ -15,14 +15,31 @@ Guía para Tecnología: actualizar la API (`api-rotadores`) y la app (`rotadores
 
 Hacer una copia de la carpeta actual de la API (con su `.env`) y de la app instalada: es el camino para volver atrás.
 
-Código de esta versión: https://github.com/Analistaprogresobogota/rotadores-fase1 (público, versión de noviembre 2026).
+Código: **el mismo repositorio de siempre**, https://github.com/Analistaprogresobogota/bavaria-rotadores-app (ahora público, versión de noviembre 2026). No hay que crear nada nuevo.
 
-## 1. API (`api-rotadores`)
+## 1. Traer el código
+
+**Si ya tienen el repositorio descargado** (su carpeta `bavaria-rotadores-app`): el 12 de noviembre de 2026 se limpió su historial para poder publicarlo (se retiraron datos internos de versiones viejas; el código no cambió). Por eso, **solo esta vez**, en lugar de `git pull` se usa:
 
 ```bash
-git clone https://github.com/Analistaprogresobogota/rotadores-fase1.git
-cp <carpeta actual de la API>/.env rotadores-fase1/api-rotadores/.env    # se conserva la configuración actual
-cd rotadores-fase1/api-rotadores
+cd <carpeta bavaria-rotadores-app>
+git fetch origin
+git reset --hard origin/main    # deja la carpeta igual al repositorio; .env y node_modules NO se tocan
+```
+
+Desde ahí, las próximas actualizaciones son con `git pull` normal.
+
+**Si no lo tienen descargado:**
+
+```bash
+git clone https://github.com/Analistaprogresobogota/bavaria-rotadores-app.git
+cp <carpeta actual de la API>/.env bavaria-rotadores-app/api-rotadores/.env    # se conserva la configuración actual
+```
+
+## 2. API (`api-rotadores`)
+
+```bash
+cd bavaria-rotadores-app/api-rotadores
 npm ci
 ```
 
@@ -53,12 +70,12 @@ Reiniciar el servicio de la API, ahora apuntando a esta carpeta.
 | Login de un usuario real desde la app nueva | Entra y ve sus datos |
 | En la base: `select left("Password",7) from progreso.usuarios_rotadores where "Usuario"='<ese usuario>'` | `scrypt$`: su contraseña ya quedó cifrada |
 
-## 2. App (`rotadores-fase1`)
+## 3. App (`rotadores-fase1`)
 
 Se compila igual que antes, con el mismo `.env` (`VITE_API_URL` apuntando a la API):
 
 ```bash
-cd rotadores-fase1
+cd bavaria-rotadores-app/rotadores-fase1
 npm ci
 npm run build                          # versión web: carpeta dist/
 npm run desktop:build:win              # Windows (portable .exe en release/)
@@ -72,7 +89,7 @@ Con npm 11 o superior, si la compilación de escritorio falla al empaquetar, pri
 
 Distribuir la app nueva a los dispositivos **el mismo día** que se actualiza la API.
 
-## 3. Contraseñas
+## 4. Contraseñas
 
 No requieren ninguna acción para la actualización: las actuales siguen funcionando y se cifran solas al primer ingreso. Si hace falta cambiar alguna, el Admin lo hace desde la app en **Usuarios → Cambiar contraseña**. La app sugiere una clave segura, la guarda cifrada y la muestra una sola vez.
 
